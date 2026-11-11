@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Рок Мото Клуб – музика на живо, бира и скара</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=PT+Sans:wght@400;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{--bg:#EEE9DF;--fg:#23272B;--muted:#5d646a;--card:#fff;--line:#d6cfc1;--amber:#C77A0C;--red:#9C2B1E;--steel:#23272B;--onsteel:#EDE8DE;--hl:#F2A93B;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1D2125;--fg:#EDE8DE;--muted:#a3abb0;--card:#272C31;--line:#394047;--amber:#F2A93B;--red:#D2503F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1D2125;--fg:#EDE8DE;--muted:#a3abb0;--card:#272C31;--line:#394047;--amber:#F2A93B;--red:#D2503F;color-scheme:dark}
+html{height:auto;scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1.06rem/1.6 "PT Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Russo One",Impact,sans-serif;font-weight:400;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{width:min(1100px,92%);margin:0 auto}
+section{padding:84px 0}
+h2{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:12px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 36px}
+.btn{display:inline-block;border:2px solid var(--amber);background:var(--amber);color:#1D2125;font:700 1rem "PT Sans",sans-serif;padding:13px 26px;border-radius:4px;cursor:pointer;text-decoration:none;transition:transform .15s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--onsteel);border-color:var(--onsteel)}
+.btn.ghost:hover{background:var(--onsteel);color:#1D2125}
+/* nav */
+header{position:fixed;inset:0 0 auto 0;z-index:20;background:#1D2125ee;backdrop-filter:blur(8px);padding-top:env(safe-area-inset-top,0px);color:#EDE8DE}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:"Russo One",sans-serif;font-size:1.25rem;text-decoration:none;color:#F2A93B}
+.links{display:flex;gap:26px;align-items:center}
+.links a{text-decoration:none;font-weight:700;opacity:.85}
+.links a:hover{opacity:1;color:#F2A93B}
+.icon{background:none;border:1px solid #EDE8DE66;color:#EDE8DE;border-radius:4px;width:42px;height:42px;font-size:1.1rem;cursor:pointer}
+#burger{display:none}
+@media (max-width:820px){
+ #burger{display:block}
+ .links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#1D2125;max-height:0;overflow:hidden;transition:max-height .35s}
+ .links.open{max-height:420px;padding-bottom:12px}
+ .links a{padding:14px 5%;width:100%}
+}
+/* hero */
+.hero{background:#1D2125;color:#EDE8DE;padding:130px 0 70px;min-height:92vh;display:flex;align-items:center;background-image:radial-gradient(circle at 78% 45%,#3a2a12 0,transparent 55%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,7vw,4.8rem);margin-bottom:20px}
+.hero p{max-width:46ch;opacity:.85;margin:0 0 28px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.gauge{width:100%;max-width:420px;margin:auto;text-align:center}
+.gauge svg{width:100%;height:auto}
+#needle{transform-origin:200px 200px;transform:rotate(-120deg);transition:transform 1.4s cubic-bezier(.2,.9,.3,1)}
+#rpm{font:400 2.2rem "Russo One",sans-serif;color:#F2A93B}
+.gauge small{display:block;opacity:.7}
+.gauge .btn{margin-top:12px}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:110px}}
+/* ticker */
+.ticker{background:var(--red);color:#fff;font-weight:700;overflow:hidden;white-space:nowrap;padding:11px 0}
+.ticker div{display:inline-block;padding-left:100%;animation:run 28s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+/* highlights */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px}
+.card h3{font-size:1.2rem;margin-bottom:8px;color:var(--amber)}
+.card p{margin:0;color:var(--muted)}
+.stat{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px}
+.stat b{font:400 2.4rem "Russo One",sans-serif;color:var(--amber);display:block}
+/* menu */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{background:transparent;color:var(--fg);border:2px solid var(--line);border-radius:4px;padding:9px 18px;font:700 1rem "PT Sans",sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.panel{display:none;animation:pop .35s}
+.panel.on{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.panel ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.panel li{background:var(--card);border-left:4px solid var(--amber);padding:14px 18px;border-radius:0 6px 6px 0}
+.panel li span{display:block;color:var(--muted);font-size:.95rem}
+.note{color:var(--muted);font-size:.95rem;margin-top:18px}
+/* reviews */
+.rev{background:var(--steel);color:var(--onsteel)}
+.rev h2{color:var(--hl)}
+.rev .lead{color:#a9b0b4}
+.slide{min-height:170px;font-size:1.25rem;max-width:62ch}
+.slide.fade{animation:pop .4s}
+.who{margin-top:14px;font-size:.95rem;color:#a9b0b4}
+.ctrl{display:flex;gap:10px;align-items:center;margin-top:20px}
+.ctrl .icon{color:#EDE8DE}
+.dots{display:flex;gap:7px;margin-left:10px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#EDE8DE55}
+.dots i.on{background:var(--hl)}
+/* reserve */
+.res{display:grid;gap:36px;grid-template-columns:1fr 1fr}
+@media (max-width:820px){.res{grid-template-columns:1fr}}
+form{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+label{display:grid;gap:5px;font-weight:700;font-size:.95rem}
+label.full,.full{grid-column:1/-1}
+input,select{font:inherit;padding:11px 12px;border:2px solid var(--line);border-radius:4px;background:var(--card);color:var(--fg);width:100%}
+.ok{display:none;background:var(--card);border:2px solid var(--amber);border-radius:6px;padding:22px}
+.ok.on{display:block;animation:pop .4s}
+.ok pre{white-space:pre-wrap;font:inherit;margin:10px 0 16px}
+ul.tick{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+ul.tick li::before{content:"✓ ";color:var(--amber);font-weight:700}
+footer{background:#1D2125;color:#a9b0b4;padding:34px 0 40px;text-align:center;font-size:.95rem}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:#F2A93B;color:#1D2125;font-weight:700;padding:12px 22px;border-radius:4px;transition:transform .3s;z-index:40}
+#toast.on{transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+ <a class="logo" href="#top">РОК МОТО КЛУБ</a>
+ <div class="links" id="links">
+  <a href="#about">За клуба</a><a href="#menu">Меню</a><a href="#reviews">Отзиви</a><a href="#reserve">Резервации</a>
+  <button class="icon" id="theme" aria-label="Смени светла/тъмна тема">◐</button>
+ </div>
+ <button class="icon" id="burger" aria-label="Отвори менюто" aria-expanded="false">☰</button>
+</nav></div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+ <div>
+  <h1>Музика на живо. Бира. Мотористи и рокери.</h1>
+  <p>Клубна къща с две свързани помещения, скара, коктейли и банди на сцената. Отпочини с мотора, остани за концерта.</p>
+  <div class="cta"><a class="btn" href="#reserve">Резервирай маса</a><button class="btn ghost" id="dir">Как се стига</button></div>
+ </div>
+ <div class="gauge" aria-label="Оборотомер">
+  <svg viewBox="0 0 400 400" role="img" aria-label="Анимиран оборотомер">
+   <circle cx="200" cy="200" r="185" fill="#272C31" stroke="#8a9096" stroke-width="6"/>
+   <circle cx="200" cy="200" r="168" fill="none" stroke="#9C2B1E" stroke-width="10" stroke-dasharray="70 1000" transform="rotate(-210 200 200)" pathLength="1000" id="redzone" style="display:none"/>
+   <g id="ticks"></g>
+   <g id="needle"><polygon points="196,200 204,200 200,52" fill="#F2A93B"/><circle cx="200" cy="200" r="14" fill="#EDE8DE"/></g>
+  </svg>
+  <div id="rpm">0</div><small>об/мин. Натисни, за да даде газ.</small>
+  <button class="btn" id="rev">Дай газ</button>
+ </div>
+</div></div>
+
+<div class="ticker" aria-hidden="true"><div>Изпълнения на живо ★ Отличен избор на бира ★ Коктейли ★ Скара ★ Безплатен паркинг, дори за кемпер ★ Приемаме резервации ★ Добре дошли, мотористи ★</div></div>
+
+<section id="about"><div class="wrap">
+ <h2>Място за хора с мотори и китари</h2>
+ <p class="lead">Мото клуб с атмосфера, която се усеща от прага. Тук можеш да спреш на път, да получиш помощ при техническа неизправност и да останеш за добра музика.</p>
+ <div class="grid">
+  <div class="card"><h3>Музика на живо</h3><p>Рок банди и изпълнения на живо, концерти и партита.</p></div>
+  <div class="card"><h3>Бира и коктейли</h3><p>Отличен избор на бира, вино, твърд алкохол и коктейли.</p></div>
+  <div class="card"><h3>Скара</h3><p>Храна от скарата, за да не пиеш на празен стомах.</p></div>
+  <div class="card"><h3>Голям паркинг</h3><p>Безплатен обособен паркинг с много места. Побира и кемпер.</p></div>
+ </div>
+ <div class="stat"><div><b>4,7</b>оценка в Google</div><div><b>52</b>отзива</div><div><b>10–20 €</b>средно на човек</div></div>
+ <p class="note">В помещенията се пуши. Идеално за групи, непринудена атмосфера.</p>
+</div></section>
+
+<section id="menu" style="background:color-mix(in srgb,var(--line) 35%,var(--bg))"><div class="wrap">
+ <h2>Какво се пие и яде</h2>
+ <p class="lead">Избери категория.</p>
+ <div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="p1">Бира</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p2">Коктейли</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p3">Твърд алкохол и вино</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p4">Храна</button>
+ </div>
+ <div class="panel on" id="p1"><ul><li>Наливна бира<span>Студена, от бъчва</span></li><li>Бутилирана бира<span>Местна и вносна</span></li><li>Бира за по-късните часове<span>Попитай бармана за днешния избор</span></li></ul></div>
+ <div class="panel" id="p2"><ul><li>Класически коктейли<span>Приготвени на място</span></li><li>Дългите напитки<span>За по-бавните вечери</span></li><li>Коктейл на деня<span>Питай на бара</span></li></ul></div>
+ <div class="panel" id="p3"><ul><li>Твърд алкохол<span>Ракия, уиски, водка, ром</span></li><li>Вино<span>Червено, бяло, розе</span></li></ul></div>
+ <div class="panel" id="p4"><ul><li>Скара<span>Месо на жар</span></li><li>Салати и мезета<span>Към бирата</span></li></ul></div>
+ <p class="note">Менюто е примерно. Актуалните позиции и цени се уточняват на място.</p>
+</div></section>
+
+<section class="rev" id="reviews"><div class="wrap">
+ <h2>Какво казват гостите</h2>
+ <p class="lead">Отзиви от Google Maps. Рейтинг 4,7 от 52 отзива.</p>
+ <div class="slide" id="slide" aria-live="polite"></div>
+ <div class="who" id="who"></div>
+ <div class="ctrl"><button class="icon" id="prev" aria-label="Предишен отзив">‹</button><button class="icon" id="next" aria-label="Следващ отзив">›</button><div class="dots" id="dots"></div></div>
+</div></section>
+
+<section id="reserve"><div class="wrap res">
+ <div>
+  <h2>Резервирай маса</h2>
+  <p class="lead">Клубът приема резервации. Попълни данните и ще получиш готово съобщение за потвърждение.</p>
+  <ul class="tick"><li>Безплатен паркинг на място</li><li>Подходящо за групи</li><li>Тоалетна и места за сядане</li></ul>
+ </div>
+ <div>
+  <form id="form">
+   <label class="full">Име<input name="name" required autocomplete="name"></label>
+   <label>Дата<input type="date" name="date" id="date" required></label>
+   <label>Час<select name="time"><option>18:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option><option>22:00</option></select></label>
+   <label>Гости<input type="number" name="guests" min="1" max="40" value="4" required></label>
+   <label>Телефон<input type="tel" name="phone" required autocomplete="tel" placeholder="08XX XXX XXX"></label>
+   <button class="btn full" type="submit">Изпрати резервация</button>
+  </form>
+  <div class="ok" id="ok" role="status"><b>Резервацията е записана.</b><pre id="sum"></pre><button class="btn" id="copy">Копирай съобщението</button> <button class="btn ghost" id="again" style="color:var(--fg);border-color:var(--fg)">Нова резервация</button></div>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> Рок Мото Клуб · Пушенето е разрешено в клуба. Консумирай отговорно.</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2600)};
+$("#yr").textContent=new Date().getFullYear();
+// nav
+const burger=$("#burger"),links=$("#links");
+burger.onclick=()=>{const o=links.classList.toggle("open");burger.setAttribute("aria-expanded",o)};
+links.addEventListener("click",e=>{if(e.target.tagName==="A")links.classList.remove("open")});
+// theme
+$("#theme").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark";
+ try{localStorage.setItem("th",r.dataset.theme)}catch(e){}};
+try{const s=localStorage.getItem("th");if(s)document.documentElement.dataset.theme=s}catch(e){}
+// gauge
+(function(){const g=$("#ticks");let h="";for(let i=0;i<=10;i++){const a=(-120+i*24)*Math.PI/180,x1=200+Math.sin(a)*165,y1=200-Math.cos(a)*165,x2=200+Math.sin(a)*140,y2=200-Math.cos(a)*140,tx=200+Math.sin(a)*115,ty=200-Math.cos(a)*115+6;
+ h+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${i>8?'#D2503F':'#EDE8DE'}" stroke-width="4"/><text x="${tx}" y="${ty}" fill="#EDE8DE" font-size="18" text-anchor="middle" font-family="PT Sans">${i}</text>`}
+ g.innerHTML=h})();
+const needle=$("#needle"),rpm=$("#rpm");let raf;
+function setRpm(v,ms){const from=parseInt(rpm.textContent)||0,t0=performance.now();cancelAnimationFrame(raf);
+ needle.style.transform=`rotate(${-120+v/10000*240}deg)`;
+ (function f(t){const k=Math.min(1,(t-t0)/ms);rpm.textContent=Math.round(from+(v-from)*k);if(k<1)raf=requestAnimationFrame(f)})(t0)}
+setTimeout(()=>{setRpm(9000,900);setTimeout(()=>setRpm(1200,1400),1000)},400);
+$("#rev").onclick=()=>{setRpm(9500,700);setTimeout(()=>setRpm(1200,1600),800);toast("Врум!")};
+// directions
+$("#dir").onclick=()=>{window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent("мото клуб рок клуб Правец"),"_blank","noopener")};
+// menu tabs
+$$(".tab").forEach(b=>b.onclick=()=>{$$(".tab").forEach(x=>x.setAttribute("aria-selected",x===b));$$(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.p))});
+// reviews
+const R=[["Уникално място, прекрасни хора. Супер яки групи свирят там.","kaloqn krustev"],["Клубна къща на мото клуб и място за концерти и партита с атмосфера, която всеки би намерил за чаровна.","Todor Marinov"],["Тук можете да отпочинете със своя мотор и да получите съдействие по технически проблеми. Имат огромен паркинг.","Nencho Stratkov"],["Добра атмосфера, страхотна музика и мили, приятни хора.","Алексей Ура Коньков"],["Готини хора, отлична атмосфера. Ходя от години и съм доволен.","Sinan Aliev"],["Live rock music, nice prices.","Ivelin Topalov"]];
+let i=0;const sl=$("#slide"),who=$("#who"),dots=$("#dots");
+dots.innerHTML=R.map(()=>"<i></i>").join("");
+function show(n){i=(n+R.length)%R.length;sl.classList.remove("fade");void sl.offsetWidth;sl.classList.add("fade");sl.textContent="„"+R[i][0]+"“";who.textContent="— "+R[i][1]+", Google Maps";[...dots.children].forEach((d,k)=>d.classList.toggle("on",k===i))}
+$("#prev").onclick=()=>{show(i-1);reset()};$("#next").onclick=()=>{show(i+1);reset()};
+let timer;const reset=()=>{clearInterval(timer);timer=setInterval(()=>show(i+1),7000)};show(0);reset();
+// reservation
+const d=$("#date"),today=new Date().toISOString().slice(0,10);d.min=today;d.value=today;
+let msg="";
+$("#form").onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);
+ const dt=new Date(f.get("date")).toLocaleDateString("bg-BG",{weekday:"long",day:"numeric",month:"long"});
+ msg=`Резервация за ${f.get("guests")} гости на ${dt} в ${f.get("time")} ч.\nИме: ${f.get("name")}\nТелефон: ${f.get("phone")}`;
+ $("#sum").textContent=msg;$("#form").style.display="none";$("#ok").classList.add("on");toast("Резервацията е записана")};
+$("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(msg);toast("Копирано")}catch(e){toast("Маркирай текста и го копирай ръчно")}};
+$("#again").onclick=()=>{$("#ok").classList.remove("on");$("#form").style.display="grid";$("#form").reset();d.value=today};
+</script>
+</body>
+</html>
